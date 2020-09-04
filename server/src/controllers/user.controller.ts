@@ -37,7 +37,6 @@ export const updateUser = async (
     const results = await getRepository(User).save(user);
     return res.json(results);
   }
-
   return res.json({msg: 'Not user found'});
 };
 
