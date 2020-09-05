@@ -1,5 +1,9 @@
 
 @import 'bulma/bulma.sass';
+@import './navbar';
+@import './Herobanner.scss';
+
+
 
 .pointer {
   cursor: pointer !important;
@@ -11,3 +15,9 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+a {
+  color: black;
+  text-decoration: none; /* no underline */
+}
+
