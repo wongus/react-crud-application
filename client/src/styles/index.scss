@@ -1,7 +1,9 @@
 
-@import 'bulma/bulma.sass';
 @import './navbar';
 @import './Herobanner.scss';
+@import url('https://fonts.googleapis.com/css?family=Monsterrat|Pinyon+Script&displayswap');
+
+$family-sans-serif: "Monsterrat", sans-serif;
 
 html {
   scroll-behavior: smooth;
@@ -23,3 +25,4 @@ a {
   text-decoration: none; /* no underline */
 }
 
+@import 'bulma/bulma.sass';

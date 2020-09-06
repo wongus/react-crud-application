@@ -44,7 +44,7 @@ export default function App() {
   };
 
   return (
-    <section className="section">
+    <section className="section is-mobile">
       <div className="container box">
         <div>
           <div>
@@ -52,21 +52,21 @@ export default function App() {
         
             <div className="level">
               <input
-                className="input"
+                className="input is-mobile mb-2"
                 value={firstname}
                 onChange={firstNameHandler}
                 type="text"
                 placeholder="firstname"
               />
               <input
-                className="input"
+                className="input is-mobile mb-2 "
                 value={lastname}
                 onChange={lastNameHandler}
                 type="text"
                 placeholder="lastname"
               />
               <button
-                className="button is-primary"
+                className="button is-primary mb-2 "
                 onClick={addHandler}
                 type="submit"
                 disabled={!firstname || !lastname ? true : false}

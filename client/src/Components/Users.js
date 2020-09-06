@@ -8,8 +8,7 @@ export default function Users({ firstname, lastname, user, users, setUsers }) {
   };
 
   return (
-    <div className=" level mt-5 ">
-     
+    <div className=" level is-mobile mt-5 ">
       <h1 className=" level-item level-left ml-1">
       name: {firstname} {lastname}
     </h1>
