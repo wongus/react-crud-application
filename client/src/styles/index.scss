@@ -3,7 +3,9 @@
 @import './navbar';
 @import './Herobanner.scss';
 
-
+html {
+  scroll-behavior: smooth;
+}
 
 .pointer {
   cursor: pointer !important;
