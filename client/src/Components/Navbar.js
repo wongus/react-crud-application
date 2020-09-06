@@ -14,11 +14,11 @@ export default function Navbar() {
             <img src={logo} alt=""></img>
             <p className="title">dumbsite</p>
           </div>
-          <a role="button" className="navbar-burger navbar-dropdown navbar-item is-hidden-desktop" aria-label="menu" aria-expanded="false">
+          <i role="button" className="navbar-burger navbar-dropdown navbar-item is-hidden-desktop" aria-label="menu" aria-expanded="false">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
-          </a>
+          </i>
         </div>
         <div className="navbar-start navbar-menu">
           <div className="navbar-item is-hidden-touch">

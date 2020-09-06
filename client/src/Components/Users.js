@@ -8,18 +8,20 @@ export default function Users({ firstname, lastname, user, users, setUsers }) {
   };
 
   return (
-    <div className="column is-parent">
-        <div>
-        </div>
-      <h1 className="has-text-centered">
-        name: {firstname} {lastname}
-        <button className="button is-danger ml-3" onClick={deleteHandler}>
-          delete
-        </button>
-        <button className="button is-primary ml-3">edit</button>
-      </h1>
-
-      <br></br>
+    <div className=" level mt-5 ">
+     
+      <h1 className=" level-item level-left ml-1">
+      name: {firstname} {lastname}
+    </h1>
+    <button
+      className=" button level-right  is-danger ml-5"
+      onClick={deleteHandler}
+    >
+      delete
+      </button>
+    <button className=" button level-right is-warning ml-3">
+      edit
+      </button>
     </div>
   );
 }

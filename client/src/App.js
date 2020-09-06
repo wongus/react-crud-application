@@ -6,9 +6,10 @@ import Herobanner from './Components/Herobanner'
 
 export default function App() {
   return (
-    <div>
+    <div >
       <Navbar/>
       <Herobanner/>
+      <Crudusers/>
     </div>
   )
 }
