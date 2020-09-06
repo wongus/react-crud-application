@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import { FaTrash, FaEdit} from 'react-icons/fa';
+
 
 export default function Users({ firstname, lastname, user, users, setUsers }) {
   const deleteHandler = () => {
@@ -16,10 +18,10 @@ export default function Users({ firstname, lastname, user, users, setUsers }) {
       className=" button level-right  is-danger ml-5"
       onClick={deleteHandler}
     >
-      delete
+      <FaTrash/>
       </button>
     <button className=" button level-right is-warning ml-3">
-      edit
+      <FaEdit/>
       </button>
     </div>
   );

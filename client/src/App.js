@@ -1,13 +1,11 @@
 import React from 'react'
-import Crudusers from './Components/Crudusers'
-import Navbar from './Components/Navbar'
 import Herobanner from './Components/Herobanner'
+import Crudusers from './Components/Crudusers'
 
 
 export default function App() {
   return (
-    <div >
-      <Navbar/>
+    <div  >
       <Herobanner/>
       <Crudusers/>
     </div>

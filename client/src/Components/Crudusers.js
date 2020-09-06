@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import User from "./Users";
 
+import { FaUserPlus, FaUser } from 'react-icons/fa';
+
+
 export default function App() {
   const [users, setUsers] = useState([]);
   const [firstname, setFirstName] = useState("");
@@ -15,6 +18,8 @@ export default function App() {
       console.log(err);
     }
   };
+
+  
 
   useEffect(() => {
     fetchUsers();
@@ -44,6 +49,7 @@ export default function App() {
   };
 
   return (
+
     <section className="section is-mobile">
       <div className="container box">
         <div>
@@ -66,12 +72,13 @@ export default function App() {
                 placeholder="lastname"
               />
               <button
-                className="button is-primary mb-2 "
+                className="button is-primary mb-2" 
                 onClick={addHandler}
                 type="submit"
                 disabled={!firstname || !lastname ? true : false}
+          
               >
-                add user
+               <FaUserPlus/>
               </button>
             </div>
           </div>
@@ -83,9 +90,11 @@ export default function App() {
             user={user}
             setUsers={setUsers}
             users={users}
+
           />
         ))}
-      </div>
+      </div>  
+       
     </section>
   );
 }
