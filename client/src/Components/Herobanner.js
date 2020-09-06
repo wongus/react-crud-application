@@ -4,7 +4,7 @@ import bannerVideo from '../video/banner.mp4'
 export default function Herobanner() {
     return (
 
-        <div class="hero is-fullheight-with-navbar is-white has-background">
+        <div class="hero is-large is-white has-background">
         <video id="vid" class="hero-background is-transparent" autoPlay muted loop src={bannerVideo}></video>
         <div class="hero-body">
             <div class="container has-text-centered">
