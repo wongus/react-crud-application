@@ -14,7 +14,10 @@ export default function App() {
     setLastName(e.target.value)
   }
 
-  const addHandler = () => {
+  const addHandler = (e) => {
+    //prevent browser refresh
+    e.preventDefault()
+    //post request with form data
     axios('http://localhost:5000/users', {
       method: 'POST',
       headers: {
@@ -29,16 +32,20 @@ export default function App() {
       .catch(error => {
         console.log(error)
       });
-    console.log()
+
+      //get the list of users with the new added value
+      fetchUsers()
   }
 
-  useEffect(() => {
+
     const fetchUsers = async () => {
       const result = await axios(
         'http://localhost:5000/users',
       );
       setUsers(result.data);
     };
+  useEffect(() => {
+    
     fetchUsers();
   }, []);
 
