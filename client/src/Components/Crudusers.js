@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import User from "./Users";
 
-import { FaUserPlus, FaUser } from 'react-icons/fa';
-
+import { FaUserPlus } from 'react-icons/fa';
 
 export default function App() {
   const [users, setUsers] = useState([]);

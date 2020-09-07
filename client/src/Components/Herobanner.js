@@ -8,7 +8,7 @@ export default function Herobanner() {
         <video id="vid" className="hero-background is-transparent " autoPlay muted loop src={bannerVideo}></video>
         <div className="hero-body has-background-black test">
             <div className="container title ">
-                <h1 className="title is-1 has-text-white">Niggatech</h1>
+                <h1 className="title is-1 has-text-white">loltech</h1>
                 <h1 className=" subtitle is-size-3 has-text-white" >
                     Welcome to my personal portfolio website
                 </h1>
