@@ -2,8 +2,8 @@ POST http://localhost:5000/users
 Content-Type: application/json
 
 {
-    "firstname":"vadim",
-    "lastname": "real"
+    "username":"yeet",
+    "password": "yeet"
 }
 
 ### 
@@ -17,6 +17,6 @@ PUT  http://localhost:5000/users/5
 Content-Type: application/json
 
 {
-    "firstname":"yeet",
-    "lastname": "yeet"
+    "username":"yeet",
+    "password": "yeet"
 }
