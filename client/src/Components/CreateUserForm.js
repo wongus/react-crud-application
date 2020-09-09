@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { FaUserPlus } from "react-icons/fa";
+// import { FaUserPlus } from "react-icons/fa";
 
 export default function App() {
-  const [users, setUsers] = useState([]);
+  // const [users, setUsers] = useState([]);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const fetchUsers = async () => {
-    try {
-      const result = await axios("http://localhost:5000/users");
-      setUsers(result.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const fetchUsers = async () => {
+  //   try {
+  //     const result = await axios("http://localhost:5000/users");
+  //     setUsers(result.data);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   const userNameHandler = (e) => {
     setUsername(e.target.value);
@@ -75,7 +75,6 @@ export default function App() {
                   disabled={!username || !password ? true : false}>
                   Submit
                 </button>
-
                 <h2 >* is required</h2>
               </div>
             </div>
