@@ -1,21 +1,29 @@
 import React from 'react'
 import bannerVideo from '../video/banner.mp4'
+import logo from '../images/logo.svg'
 
 export default function Herobanner() {
     return (
 
-    <div className="hero is-large is-white has-background whatever  ">
-        <video id="vid" className="hero-background is-transparent " autoPlay muted loop src={bannerVideo}></video>
-        <div className="hero-body has-background-black test">
-            <div className="container title ">
-                <h1 className="title is-1 has-text-white">loltech</h1>
-                <h1 className=" subtitle is-size-3 has-text-white" >
-                    Welcome to my personal portfolio website
+        <div className="hero is-fullheight has-background">
+
+            <video id="vid" className="hero-background is-transparent " autoPlay muted loop src={bannerVideo}></video>
+
+
+            <div className="hero-head has-text-right has-background-black ">
+                <a className="button is-outlined is-white mr-5 mt-4 bottom-border-white">Log in</a>
+            </div>
+            
+            <div className="hero-body has-background-black">
+                <div className="container title ">
+                    <h1 className="title is-1 has-text-white">lolitech</h1>
+                    <h1 className=" subtitle is-size-3 has-text-white" >
+                        Welcome to my personal portfolio website
                 </h1>
-                <a className="button is-white is-outlined is-white is-medium has-text-white" href="#projects">Projects</a>
+                    <a className="button is-white is-outlined is-white is-medium has-text-white" href="#projects">Projects</a>
+                </div>
             </div>
         </div>
-    </div>
 
     )
 }
