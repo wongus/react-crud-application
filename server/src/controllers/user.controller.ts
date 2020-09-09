@@ -37,7 +37,7 @@ export const updateUser = async (
     const results = await getRepository(User).save(user);
     return res.json(results);
   }
-  return res.json({msg: 'Not user found'});
+  return res.json({msg: 'user not found'});
 };
 
 export const deleteUser = async (req: Request, res: Response): Promise<Response> => {
