@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-export default function Modal() {
-  const [modalStatus, setModalStatus] = useState(false);
+export default function Modal({modalStatus, setModalStatus, toggleModal}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const toggleModal = () => {
-    setModalStatus(!modalStatus);
-  };
 
   const userNameHandler = (e) => {
     setUsername(e.target.value);
@@ -18,7 +14,7 @@ export default function Modal() {
   };
 
   const addHandler = async () => {
-    toggleModal()
+    setModalStatus(!modalStatus)
 
     try {
       const resp = await axios.post("http://localhost:5000/users", {
@@ -34,20 +30,18 @@ export default function Modal() {
     setPassword("");
   };
 
+
   return (
     <div>
-      <button className="button is-primary" onClick={toggleModal}>
-        open modal
-      </button>
       <div>
         <div className={`modal is-clipped ${modalStatus ? "is-active" : ""}`}>
           <div className="modal-background"></div>
           <div className="modal-card">
-            <header className="modal-card-head">
-              <p className="modal-card-title">Create a new account</p>
+            <header className="modal-card-head has-background-white-tert">
+              <p className="modal-card-title has-text-centered is-size-2">Log in</p>
               <button className="delete" onClick={toggleModal} aria-label="close"></button>
             </header>
-            <section className="modal-card-body">
+            <section className="modal-card-body ">
               <div className="container">
                 <div className="column is-fullwidth">
                   <div className="columns is-vcentered is-centered">
@@ -78,9 +72,9 @@ export default function Modal() {
                 </div>
               </div>
             </section>
-            <footer className="modal-card-foot">
-              <button
-                className="button is-success"
+            <footer className="modal-card-foot has-background-white-ter">
+              <button 
+                className="button is-info ml-5"
                 onClick={addHandler}
                 type="submit"
                 disabled={!username || !password ? true : false}

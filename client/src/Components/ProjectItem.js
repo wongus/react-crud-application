@@ -11,6 +11,7 @@ export default function ProjectItem() {
         </div>
         <div className="card-image">
           <img
+            alt=""
             className="is-horizontal-center"
             src={require("../images/kat.jpg")}
           />
