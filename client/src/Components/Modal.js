@@ -37,6 +37,7 @@ export default function Modal({loginModalStatus, setLoginModalStatus, toggleModa
   };
 
   return (
+    
     <div>
       <div>
         <div className={`modal is-clipped ${loginModalStatus ? "is-active" : ""}`}>
