@@ -1,8 +1,10 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import { User } from "../entity/User";
+import { Token } from "../entity/Token"
 
 const bcrypt = require("bcrypt");
+var jwt = require('jsonwebtoken');
 
 export const getUsers = async (
   req: Request,
@@ -21,16 +23,27 @@ export const getUser = async (
 };
 
 export const authenticateUser = async function (req: Request, res: Response) {
-  const results = await getRepository(User).findOne({
+  const user = await getRepository(User).findOne({
     where: { username: req.body.username },
   });
-  if (results !== undefined) {
-    bcrypt.compare(req.body.password, results.password, function (
+  if (user !== undefined) {
+    bcrypt.compare(req.body.password, user.password, async function (
       err: Error,
-      result: Boolean
+      isValid: Boolean
     ) {
-      if (result == true) {
-        res.send("Acces granted");
+      if (isValid == true) {
+      var token = jwt.sign({ id: user.id , username: user.username }, 'verySecureKey');
+        const newToken = await getRepository(Token).save({
+            user: user.id,
+            token: token,
+            lastTimestamp: Math.round((new Date()).getTime() / 1000),
+            hostName: req.hostname,
+            createdTimestamp: Math.round((new Date()).getTime() / 1000),
+        });
+        console.log(newToken)
+
+        res.json({token:token})
+        // res.send("Acces granted");
       } else {
         res.status(400);
         res.send("Invalid user or password");

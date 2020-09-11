@@ -1,27 +1,33 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-export default function Modal({modalStatus, setModalStatus, toggleModal}) {
+export default function Modal({loginModalStatus, setLoginModalStatus, toggleModal, setLoggedIn, toggleLoginModal}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
 
   const userNameHandler = (e) => {
     setUsername(e.target.value);
   };
+
   const passwordHandler = (e) => {
     setPassword(e.target.value);
   };
-
+  
   const addHandler = async () => {
-    setModalStatus(!modalStatus)
-
     try {
       const resp = await axios.post("http://localhost:5000/authenticate", {
         username: `${username}`,
         password: `${password}`,
+      }).then(function(response){
+        console.log(response)
+        localStorage.setItem('token', response.data.token);
+        axios.defaults.headers.common['Auth-Token'] = localStorage.getItem('token');
+        setLoggedIn(true)
+        setLoginModalStatus(false)
+      }).catch(function(error) {
+        console.log(error)
       });
-      console.log(resp.data);
+  
     } catch (err) {
       // Handle Error Here
       console.error(err);
@@ -30,16 +36,15 @@ export default function Modal({modalStatus, setModalStatus, toggleModal}) {
     setPassword("");
   };
 
-
   return (
     <div>
       <div>
-        <div className={`modal is-clipped ${modalStatus ? "is-active" : ""}`}>
+        <div className={`modal is-clipped ${loginModalStatus ? "is-active" : ""}`}>
           <div className="modal-background"></div>
           <div className="modal-card">
             <header className="modal-card-head has-background-white-tert">
               <p className="modal-card-title has-text-centered is-size-2">Log in</p>
-              <button className="delete" onClick={toggleModal} aria-label="close"></button>
+              <button className="delete" onClick={toggleLoginModal} aria-label="close"></button>
             </header>
             <section className="modal-card-body ">
               <div className="container">
@@ -81,7 +86,7 @@ export default function Modal({modalStatus, setModalStatus, toggleModal}) {
               >
                 Submit
               </button>
-              <button className="button" onClick={toggleModal}>
+              <button className="button" onClick={toggleLoginModal}>
                 Cancel
               </button>
             </footer>
