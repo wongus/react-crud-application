@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import { User } from "../entity/User";
 
+const bcrypt = require("bcrypt");
+
 export const getUsers = async (
   req: Request,
   res: Response
@@ -18,13 +20,35 @@ export const getUser = async (
   return res.json(results);
 };
 
-export const createUser = async (
-  req: Request,
-  res: Response
-): Promise<Response> => {
-  const newUser = await getRepository(User).create(req.body);
-  const results = await getRepository(User).save(newUser);
-  return res.json(results);
+export const authenticateUser = async function (req: Request, res: Response) {
+  const results = await getRepository(User).findOne({
+    where: { username: req.body.username },
+  });
+  if (results !== undefined) {
+    bcrypt.compare(req.body.password, results.password, function (
+      err: Error,
+      result: Boolean
+    ) {
+      if (result == true) {
+        res.send("Acces granted");
+      } else {
+        res.status(400);
+        res.send("Invalid user or password");
+      }
+    });
+  } else {
+    res.status(400);
+    res.send("Invalid user or password");
+  }
+};
+
+export const createUser = async function (req: Request, res: Response) {
+  bcrypt.hash(req.body.password, 10, async function (err: Error, hash: string) {
+    req.body.password = hash;
+    const newUser = await getRepository(User).create(req.body);
+    const results = await getRepository(User).save(newUser);
+    return res.json(results);
+  });
 };
 
 export const updateUser = async (
@@ -37,10 +61,13 @@ export const updateUser = async (
     const results = await getRepository(User).save(user);
     return res.json(results);
   }
-  return res.json({msg: 'user not found'});
+  return res.json({ msg: "user not found" });
 };
 
-export const deleteUser = async (req: Request, res: Response): Promise<Response> => {
+export const deleteUser = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
   const results = await getRepository(User).delete(req.params.id);
   return res.json(results);
 };

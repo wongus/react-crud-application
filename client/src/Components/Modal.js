@@ -17,7 +17,7 @@ export default function Modal({modalStatus, setModalStatus, toggleModal}) {
     setModalStatus(!modalStatus)
 
     try {
-      const resp = await axios.post("http://localhost:5000/users", {
+      const resp = await axios.post("http://localhost:5000/authenticate", {
         username: `${username}`,
         password: `${password}`,
       });
