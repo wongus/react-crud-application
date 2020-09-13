@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-export default function Modal({loginModalStatus, setLoginModalStatus, toggleModal, setLoggedIn, toggleLoginModal}) {
+export default function Modal({ loginModalStatus, setLoginModalStatus, toggleModal, setLoggedIn, toggleLoginModal }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -12,32 +12,31 @@ export default function Modal({loginModalStatus, setLoginModalStatus, toggleModa
   const passwordHandler = (e) => {
     setPassword(e.target.value);
   };
-  
-  const addHandler = async () => {
-    try {
-      const resp = await axios.post("http://localhost:5000/authenticate", {
-        username: `${username}`,
-        password: `${password}`,
-      }).then(function(response){
-        console.log(response)
-        localStorage.setItem('token', response.data.token);
+
+  const authenticationHandler = async () => {
+    await axios.post("http://localhost:5000/authenticate", {
+      username: `${username}`,
+      password: `${password}`,
+    }).then((response) => {
+      if (response.data.status) {
+        localStorage.setItem('token', response.data.payload.token);
         axios.defaults.headers.common['Auth-Token'] = localStorage.getItem('token');
         setLoggedIn(true)
         setLoginModalStatus(false)
-      }).catch(function(error) {
-        console.log(error)
-      });
-  
-    } catch (err) {
-      // Handle Error Here
-      console.error(err);
-    }
-    setUsername("");
-    setPassword("");
+      } else {
+        // should show response in modal
+        console.log(response.data.status)
+      }
+    }).catch((error) => {
+      console.log(error)
+    }).then(() => {
+      setUsername('')
+      setPassword('')
+    })
+
   };
 
   return (
-    
     <div>
       <div>
         <div className={`modal is-clipped ${loginModalStatus ? "is-active" : ""}`}>
@@ -79,9 +78,9 @@ export default function Modal({loginModalStatus, setLoginModalStatus, toggleModa
               </div>
             </section>
             <footer className="modal-card-foot has-background-white-ter">
-              <button 
+              <button
                 className="button is-info ml-5"
-                onClick={addHandler}
+                onClick={authenticationHandler}
                 type="submit"
                 disabled={!username || !password ? true : false}
               >
