@@ -1,20 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Users from "./Users";
 // import { FaUserPlus } from "react-icons/fa";
 
 export default function App() {
-  // const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([]);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  // const fetchUsers = async () => {
-  //   try {
-  //     const result = await axios("http://localhost:5000/users");
-  //     setUsers(result.data);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  const fetchData = async () => {
+    const result = await axios('http://localhost:5000/users',);
+    setUsers(result.data);
+  }
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   const userNameHandler = (e) => {
     setUsername(e.target.value);
@@ -26,10 +26,10 @@ export default function App() {
   const addHandler = async () => {
     try {
       const resp = await axios.post("http://localhost:5000/users", {
-        firstname: `${username}`,
-        lastname: `${password}`,
+        username: `${username}`,
+        password: `${password}`,
       });
-      console.log(resp.data);
+      fetchData()
     } catch (err) {
       // Handle Error Here
       console.error(err);
@@ -73,9 +73,13 @@ export default function App() {
                   onClick={addHandler}
                   type="submit"
                   disabled={!username || !password ? true : false}>
-                  Submit
+                  Create new user
                 </button>
-                <h2 >* is required</h2>
+              </div>
+              <div>
+                {users.map((user) => (
+                  <Users key={user.id} users={users} user={user} setUsers={setUsers} />
+                ))}
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Herobanner from './Components/Herobanner'
-// import CreateUserForm from './Components/CreateUserForm'
+import CreateUserForm from './Components/CreateUserForm'
 // import Projectcard from './Components/Projectcard';
 import Modal from './Components/Modal';
 import axios from "axios";
@@ -25,9 +25,9 @@ export default function App() {
   console.log(loggedIn)
   return (
     <div>
-      <Herobanner loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-      
+      <Herobanner loggedIn={loggedIn} setLoggedIn={setLoggedIn} />    
       <Modal  />
+      <CreateUserForm/>
     </div>
   )
 }
