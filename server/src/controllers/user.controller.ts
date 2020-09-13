@@ -41,17 +41,31 @@ export const authenticateUser = async function (req: Request, res: Response) {
             createdTimestamp: Math.round((new Date()).getTime() / 1000),
         });
         console.log(newToken)
-
-        res.json({token:token})
+        res.json(          {
+          "status": true,
+          "message":null,
+          "payload": {
+            "username": user.username,
+            "token":token
+          }
+        })
         // res.send("Acces granted");
       } else {
-        res.status(400);
-        res.send("Invalid user or password");
+        res.json(
+          {
+            "status": false,
+            "message":"Invalid credentials, please try again",
+            "payload": null
+          })
       }
     });
   } else {
-    res.status(400);
-    res.send("Invalid user or password");
+    res.json(
+      {
+        "status": false,
+        "message":"Invalid credentials, please try again",
+        "payload": null
+      })
   }
 };
 
