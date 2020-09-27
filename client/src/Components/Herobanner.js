@@ -21,7 +21,7 @@ export default function Herobanner({ loggedIn, setLoggedIn }) {
 
 
     return (
-        <div className="hero is-fullheight has-background">
+        <div className="hero is-medium has-background">
             <video id="vid" className="hero-background is-transparent " autoPlay muted loop src={bannerVideo}></video>
             <div className="hero-head has-text-right has-background-black ">
                 {loggedIn
@@ -36,7 +36,6 @@ export default function Herobanner({ loggedIn, setLoggedIn }) {
                     <h1 className=" subtitle is-size-3 has-text-white" >
                         Welcome to my personal portfolio website
                 </h1>
-                    <a className="button is-white is-outlined is-white is-medium has-text-white" href="#projects">Projects</a>
                 </div>
             </div>
 

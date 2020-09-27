@@ -2,7 +2,7 @@ import React from "react";
 
 export default function ProjectItem() {
   return (
-    <div className="column is-one-third ">
+    <div className="column is-half">
       <div className="card">
         <div className="card-header">
           <div className="card-header-title">

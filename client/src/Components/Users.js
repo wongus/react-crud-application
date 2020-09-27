@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import { FaTrash, FaEdit } from 'react-icons/fa';
 
 export default function Users({ username, user, setUsers, users }) {
   const deleteHandler = () => {
