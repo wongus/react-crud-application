@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
-import Herobanner from './Components/Herobanner'
-import CreateUserForm from './Components/CreateUserForm'
-// import Projectcard from './Components/Projectcard';
-import Modal from './Components/Modal';
 import axios from "axios";
-import Projectcard from './Components/Projectcard';
+import Website from "./Components/Website"
 
 export default function App() {
 
@@ -22,14 +18,10 @@ export default function App() {
     setInitialized(true)
   }
 
-
   console.log(loggedIn)
   return (
     <div>
-      <Herobanner loggedIn={loggedIn} setLoggedIn={setLoggedIn} />    
-      <Modal  />
-      <Projectcard/>
-      <CreateUserForm/>
+      <Website/>
     </div>
   )
 }

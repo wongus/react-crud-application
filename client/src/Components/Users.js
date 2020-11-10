@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { FaEdit, FaTrash } from "@fortawesome/fontawesome-free";
 
 export default function Users({ username, user, setUsers, users }) {
   const deleteHandler = () => {
@@ -9,7 +10,7 @@ export default function Users({ username, user, setUsers, users }) {
   return (
     <div className=" level is-mobile mt-5 ">
       <h1 className=" level-item level-left ml-1">
-        user name: {user.username}
+        username: {user.username}
       </h1>
       <button
         className=" button level-right  is-danger ml-5"
